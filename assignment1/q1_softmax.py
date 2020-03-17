@@ -21,7 +21,13 @@ def softmax(x):
     """
 
     ### YOUR CODE HERE
-    raise NotImplementedError
+    
+    max_x = np.max(x,-1)
+
+    exp_x = np.exp(x-max_x.reshape([-1,1]))
+    sum_exp = np.sum(exp_x,-1)
+    x = exp_x/sum_exp.reshape([-1,1])
+        
     ### END YOUR CODE
     
     return x
@@ -57,8 +63,20 @@ def test_softmax():
     your tests be graded.
     """
     print("Running your tests...")
-    ### YOUR CODE HERE
-    raise NotImplementedError
+    my_test1 = softmax(np.array([[1001,1002],[500,501],[3,4],[-2,-2]]))
+    assert np.amax(np.fabs(my_test1 - np.array(
+        [[0.26894142, 0.73105858], [0.26894142, 0.73105858], 
+         [0.26894142, 0.73105858], [0.5, 0.5]]))) <= 1e-6
+    
+    my_test2 = softmax(np.array([[1001],[500],[3]]))
+    assert np.amax(np.fabs(my_test2 - np.array(
+        [[1], [1], [1]]))) <= 1e-6  
+            
+    my_test3 = softmax(np.array([[1001,1002,1003],[499,501,500],[3,4,5],[-2,-2,-2]]))
+    assert np.amax(np.fabs(my_test3 - np.array(
+        [[0.09003057, 0.24472847, 0.66524096], [0.09003057, 0.66524096, 0.24472847], 
+         [0.09003057, 0.24472847, 0.66524096], [0.33333333, 0.33333333, 0.33333333]]))) <= 1e-6
+    
     ### END YOUR CODE  
 
 if __name__ == "__main__":
