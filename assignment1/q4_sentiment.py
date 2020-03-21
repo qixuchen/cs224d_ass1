@@ -10,7 +10,7 @@ from q4_softmaxreg import softmaxRegression, getSentenceFeature, accuracy, softm
 # NOTE: fill in one more "your code here" below before running!
 REGULARIZATION = None   # Assign a list of floats in the block below
 ### YOUR CODE HERE
-raise NotImplementedError
+REGULARIZATION = [2e-4,3e-4,5e-4,8e-4]   # Assign a list of floats in the block below
 ### END YOUR CODE
 
 # Load the dataset
@@ -86,7 +86,9 @@ BEST_REGULARIZATION = None
 BEST_WEIGHTS = None
 
 ### YOUR CODE HERE 
-raise NotImplementedError
+max_result = max(results, key=lambda result: result["train"])
+BEST_REGULARIZATION = max_result["reg"]
+BEST_WEIGHTS = max_result["weights"]
 ### END YOUR CODE
 
 # Test your findings on the test set

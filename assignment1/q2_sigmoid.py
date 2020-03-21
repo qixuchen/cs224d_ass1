@@ -6,7 +6,7 @@ def sigmoid(x):
     """
     
     ### YOUR CODE HERE
-    x = 1/(1 + np.exp(-x))
+    x = 1./(1. + np.exp(-x))
     ### END YOUR CODE
     
     return x
